@@ -16,7 +16,7 @@ class PlayerShip(Ship):
 
     def _update_fire_pos_diff(self, dt):
         diff = dt - self.fire_time
-        if diff < 4:
+        if diff < 5:
             self.fire_pos_diff = self.fire_pos_diff + 1
         elif self.fire_pos_diff >= 0:
             self.fire_pos_diff = self.fire_pos_diff - 1

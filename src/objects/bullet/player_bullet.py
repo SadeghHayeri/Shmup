@@ -19,4 +19,5 @@ class PlayerBullet(Bullet):
         self.rect.center = pos
 
     def update(self, dt):
+        super().update(dt)
         self.rect.center = (self.rect.center[0], self.rect.center[1] - self.speed)
