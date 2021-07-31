@@ -34,7 +34,7 @@ if __name__ == '__main__':
                 player.on_fire = False
 
         pygame.display.flip()
-        screen.fill((0, 0, 0))
+        screen.fill((100, 100, 100))
         game_manager.update(dt)
         game_manager.draw(screen)
         clock.tick(FPS)

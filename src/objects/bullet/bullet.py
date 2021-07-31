@@ -1,7 +1,7 @@
-from pygame.sprite import Sprite
+from src.objects.object import GameObject
 
 
-class Bullet(Sprite):
+class Bullet(GameObject):
     def __init__(self):
         super().__init__()
 
