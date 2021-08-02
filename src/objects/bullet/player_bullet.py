@@ -6,7 +6,7 @@ class PlayerBullet(Bullet):
     def __init__(self, pos):
         super().__init__()
         self.level = 0
-        self.width, self.height = 20, 20
+        self.width, self.height = 25, 25
 
         self.images = [
             pygame.transform.scale(pygame.image.load('src/assets/Tiles/tile_0000.png'), (self.width, self.height)),
