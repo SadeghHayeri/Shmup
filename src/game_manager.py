@@ -42,7 +42,7 @@ class GameManager:
         return self.player
 
     def _check_bullet_collision(self, dt):
-        for bullet in self.bullets:
+        for bullet in filter(lambda b: not b.exploded, self.bullets):
             collides = pygame.sprite.spritecollide(bullet, self.enemies, False)
             if collides:
                 bullet.explode(dt)
@@ -71,8 +71,8 @@ class GameManager:
     def draw(self, screen):
         self.map.draw(screen)
         self.shadows.draw(screen)
-        self.bullets.draw(screen)
         self.enemies.draw(screen)
+        self.bullets.draw(screen)
         self.players.draw(screen)
 
 

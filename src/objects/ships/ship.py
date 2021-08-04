@@ -7,7 +7,7 @@ class Ship(GameObject):
     def __init__(self):
         super().__init__()
 
-        self.health = 100
+        self.health = 1000
         self.has_shadow = True
         self.last_hit_time = None
         self.original_image = None
