@@ -40,9 +40,12 @@ TILE_IMAGES = {
     'g:b:b:b,b:g:b:b': get_image('src/assets/Tiles/tile_0051.png'),
 
     'b:g:g:b,b:b:g:b': get_image('src/assets/Tiles/tile_0041.png'),
+    'b:g:g:b,b:g:g:b': get_image('src/assets/Tiles/tile_0041.png'),
     'b:b:g:g,b:b:b:g': get_image('src/assets/Tiles/tile_0053.png'),
+    'b:b:g:g,b:b:g:g': get_image('src/assets/Tiles/tile_0053.png'),
     'g:b:b:g,g:b:b:b': get_image('src/assets/Tiles/tile_0052.png'),
     'g:g:b:b,b:g:b:b': get_image('src/assets/Tiles/tile_0040.png'),
+    'g:g:b:b,b:g:g:b': get_image('src/assets/Tiles/tile_0040.png'),
 
     # Brown
 
@@ -74,7 +77,9 @@ TILE_IMAGES = {
     'b:x:x:b,b:b:x:b': get_image('src/assets/Tiles/tile_0047.png'),
     'b:b:x:x,b:b:b:x': get_image('src/assets/Tiles/tile_0059.png'),
     'x:b:b:x,x:b:b:b': get_image('src/assets/Tiles/tile_0058.png'),
+    'x:b:b:x,x:b:b:x': get_image('src/assets/Tiles/tile_0058.png'),
     'x:x:b:b,b:x:b:b': get_image('src/assets/Tiles/tile_0046.png'),
+    'x:x:b:b,b:x:x:b': get_image('src/assets/Tiles/tile_0046.png'),
 
     'green': get_image('src/assets/Tiles/tile_0050.png'),
     'brown': get_image('src/assets/Tiles/tile_0056.png'),
@@ -92,6 +97,7 @@ class Tile(GameObject):
     def __init__(self, game_map, x, y):
         super().__init__()
 
+        self.x, self.y = x, y
         map_width, map_height = len(game_map), len(game_map[0])
 
         if x == 0 or x == map_width - 1 or y == 0 or y == map_height - 1:
@@ -116,4 +122,10 @@ class Tile(GameObject):
 
         self.rect = self.image.get_rect()
         self.rect.center = (x * TILE_WIDTH, y * TILE_HEIGHT)
+        self.initial_diff_pos = -1 * map_height * TILE_HEIGHT + HEIGHT
+        self.speed = 1
+
+    def update(self, dt):
+        diff_pos = self.initial_diff_pos + self.speed * dt
+        self.rect.center = (self.x * TILE_WIDTH, self.y * TILE_HEIGHT + diff_pos)
 

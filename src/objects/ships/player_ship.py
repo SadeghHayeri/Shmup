@@ -6,7 +6,7 @@ class PlayerShip(Ship):
     def __init__(self):
         super().__init__()
         self.image = pygame.image.load('src/assets/Ships/ship_0000.png')
-        self.image = pygame.transform.scale(self.image, (80, 80))
+        self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
 
         self.on_fire = False
@@ -27,6 +27,7 @@ class PlayerShip(Ship):
         self.rect.center = (mouse_pos[0], mouse_pos[1] + self.fire_pos_diff)
 
     def update(self, dt):
+        super(PlayerShip, self).update(dt)
         self._update_ship_location(dt)
 
     def fire(self, fire_time):

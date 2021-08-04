@@ -37,4 +37,8 @@ if __name__ == '__main__':
         screen.fill((100, 100, 100))
         game_manager.update(dt)
         game_manager.draw(screen)
+
+        font = pygame.font.Font(None, 18)
+        fps = font.render(f'{int(clock.get_fps())} FPS', True, pygame.Color('black') if clock.get_fps() > 55 else pygame.Color('red'))
+        screen.blit(fps, (5, 5))
         clock.tick(FPS)
