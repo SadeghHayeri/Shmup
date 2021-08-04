@@ -29,6 +29,10 @@ class GameObject(Sprite):
         self.shadow_offset = (-30, 20)
         self.shadow_scale = .9
         self.shadow_ambience = .15
+        self.pos = (0, 0)
+
+    def update(self, dt):
+        self.rect.center = self.pos
 
     def get_shadow(self):
         if self.has_shadow:

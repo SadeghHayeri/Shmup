@@ -17,8 +17,8 @@ class PlayerBullet(Bullet):
         ]
         self.image = self.images[self.level]
         self.rect = self.image.get_rect()
-        self.rect.center = pos
+        self.pos = pos
 
     def update(self, dt):
         super().update(dt)
-        self.rect.center = (self.rect.center[0], self.rect.center[1] - self.speed)
+        self.pos = (self.pos[0], self.pos[1] - self.speed)

@@ -7,7 +7,7 @@ class Ship(GameObject):
     def __init__(self):
         super().__init__()
 
-        self.health = 1000
+        self.health = 100
         self.has_shadow = True
         self.last_hit_time = None
         self.original_image = None
@@ -27,6 +27,7 @@ class Ship(GameObject):
         return result
 
     def update(self, dt):
+        super(Ship, self).update(dt)
         if dt == 1:
             self.original_image = self.image.copy()
             self.hit_image = self._get_hit_image()

@@ -24,7 +24,7 @@ class PlayerShip(Ship):
     def _update_ship_location(self, dt):
         self._update_fire_pos_diff(dt)
         mouse_pos = pygame.mouse.get_pos()
-        self.rect.center = (mouse_pos[0], mouse_pos[1] + self.fire_pos_diff)
+        self.pos = (mouse_pos[0], mouse_pos[1] + self.fire_pos_diff)
 
     def update(self, dt):
         super(PlayerShip, self).update(dt)

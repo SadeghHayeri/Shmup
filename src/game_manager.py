@@ -6,6 +6,7 @@ from pygame import sprite
 from src.config import FPS
 import pygame
 
+
 def get_map():
     with open('src/map.txt', 'r') as f:
         game_map = [list(line.strip().replace(' ', '')) for line in f.readlines()]
@@ -48,7 +49,6 @@ class GameManager:
                 bullet.explode(dt)
                 for collide in collides:
                     collide.hit(dt, bullet.damage)
-
 
     def update(self, dt):
         self.map.update(dt)

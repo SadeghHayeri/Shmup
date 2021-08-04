@@ -21,6 +21,7 @@ class Bullet(GameObject):
         self.explode_time = None
 
     def update(self, dt):
+        super(Bullet, self).update(dt)
         if self.exploded:
             if self.explode_time <= dt - 5:
                 self.kill()
@@ -36,7 +37,7 @@ class Bullet(GameObject):
         # self.max_speed = 0
         self.exploded = True
         self.explode_time = dt
-        self.rect.center = (self.rect.center[0], self.rect.center[1] - 50)
+        self.pos = (self.pos[0], self.pos[1] - 50)
 
         size = random.randint(20, 40)
         self.image = random.choice(EXPLODE_IMAGES)

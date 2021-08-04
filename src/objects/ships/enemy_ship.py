@@ -26,15 +26,15 @@ class EnemyShip(Ship):
         super().__init__()
         self.image = SHIP_IMAGES[_type]
         self.rect = self.image.get_rect()
-        self.rect.center = start_pos
+        self.pos = start_pos
 
         self.on_fire = False
         self.fire_rate = 1 / 300
         self.fire_time = 0
+        self.speed = 2
 
     def _update_ship_location(self, dt):
-        pass
-        # self.rect.center = (mouse_pos[0], mouse_pos[1] + self.fire_pos_diff)
+        self.pos = (self.pos[0], self.pos[1] + self.speed)
 
     def update(self, dt):
         super(EnemyShip, self).update(dt)
