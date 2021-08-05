@@ -54,7 +54,6 @@ class Ship(GameObject):
             pygame.transform.scale(pygame.image.load('src/assets/Tiles/tile_0008.png'), explode_size),
         ][image_index]
 
-        # result.blit(self.original_image, (0, 0))
         result.blit(img, (self.image.get_size()[0] // 2 - explode_size[0] // 2, self.image.get_size()[1] // 2 - explode_size[1] // 2))
         return result
 
@@ -63,6 +62,9 @@ class Ship(GameObject):
 
         self.original_image = self.image.copy()
         self.hit_image = self._get_hit_image()
+
+    def _set_image(self, image):
+        self.image = self._get_with_health_bar(image)
 
     def update(self, dt):
         super(Ship, self).update(dt)
@@ -79,7 +81,29 @@ class Ship(GameObject):
                 self.kill()
         else:
             if self.last_hit_time and dt - 6 <= self.last_hit_time <= dt:
-                self.image = self.hit_image
+                self._set_image(self.hit_image)
             else:
-                self.image = self.original_image
+                self._set_image(self.original_image)
+
+    def _get_with_health_bar(self, image):
+        if self.health == 100:
+            return image
+
+        bar_size = (60, 4)
+        health_bar = pygame.Surface(((self.health / 100) * bar_size[0], bar_size[1]), pygame.SRCALPHA, 32)
+
+        color = (0, 0, 0)
+        if self.health > 80:
+            color = (51, 204, 51)
+        elif self.health > 50:
+            color = (255, 102, 0)
+        else:
+            color = (255, 51, 0)
+        health_bar.fill(color)
+
+        result = pygame.Surface((image.get_size()[0], image.get_size()[1] + bar_size[1]), pygame.SRCALPHA, 32)
+        result.blit(image, (0, 0))
+        result.blit(health_bar, ((image.get_size()[0] - bar_size[0]) // 2, image.get_size()[1]))
+
+        return result
 

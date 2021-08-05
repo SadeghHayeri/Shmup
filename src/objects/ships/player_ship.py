@@ -9,7 +9,7 @@ class PlayerShip(Ship):
         self.image = pygame.transform.scale(self.image, (100, 100))
         self.rect = self.image.get_rect()
 
-        self.on_fire = False
+        self.on_fire = True
         self.fire_rate = 1 / 300
         self.fire_time = 0
         self.fire_pos_diff = 0
