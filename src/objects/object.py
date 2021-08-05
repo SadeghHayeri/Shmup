@@ -31,7 +31,7 @@ class GameObject(Sprite):
         self.shadow_offset = (-54, 43)
         self.shadow_scale = .9
         self.shadow_ambience = .09
-        self.pos = (-1000, -1000)
+        self.pos = (-10000, -10000)
 
     def init(self, dt):
         self._init = True

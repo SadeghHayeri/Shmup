@@ -3,6 +3,13 @@ import pygame
 from src.utils import get_shadow
 import random
 
+EXPLODE_SOUND_FXS = [
+    pygame.mixer.Sound('src/assets/sounds/explode/00.wav'),
+    pygame.mixer.Sound('src/assets/sounds/explode/01.wav'),
+    pygame.mixer.Sound('src/assets/sounds/explode/02.wav'),
+    pygame.mixer.Sound('src/assets/sounds/explode/03.wav'),
+]
+
 
 class Ship(GameObject):
     def __init__(self):
@@ -23,6 +30,9 @@ class Ship(GameObject):
         self.health -= damage
         if not self.exploded and self.health <= 0:
             self.exploded = True
+            sound = random.choice(EXPLODE_SOUND_FXS)
+            sound.set_volume(.8)
+            sound.play()
 
     def _get_hit_image(self):
         shadow = get_shadow(self.image, .5, (255, 0, 0))

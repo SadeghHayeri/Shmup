@@ -1,4 +1,6 @@
 import pygame
+pygame.init()
+
 import sys
 from src.config import *
 from src.game_manager import GameManager
@@ -6,7 +8,6 @@ from src.events import *
 
 
 if __name__ == '__main__':
-    pygame.init()
     clock = pygame.time.Clock()
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
     screen.fill((0, 0, 0))

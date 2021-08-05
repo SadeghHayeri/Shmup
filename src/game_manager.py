@@ -37,6 +37,10 @@ class GameManager:
         for tile in get_map():
             self.map.add(tile)
 
+        background_sound = pygame.mixer.Sound('src/assets/sounds/background/00.wav')
+        background_sound.set_volume(.2)
+        background_sound.play(loops=True, fade_ms=2000)
+
     def get_player(self):
         return self.player
 
