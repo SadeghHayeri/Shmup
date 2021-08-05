@@ -12,6 +12,7 @@ class Shadow(Sprite):
         self.image = get_shadow(owner.image, ambience)
         self.image = pygame.transform.scale(self.image, (owner.rect.width, owner.rect.height))
         self.rect = self.image.get_rect()
+        self.rect.center = (-10000, -10000)
 
     def update(self, dt):
         if not self.owner.alive():

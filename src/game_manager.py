@@ -62,7 +62,7 @@ class GameManager:
         if random.random() > .99:
             ship_type = random.choice(['b1', 'b2', 'b3', 'b4', 's1', 's2', 's3', 's4'])
             start_pos = (random.randint(100, WIDTH - 100), -100)
-            enemy = EnemyShip(ship_type, start_pos, 0)
+            enemy = EnemyShip(ship_type, start_pos, random.choice([-45, 0, 45]))
             self.enemies.add(enemy)
             self.shadows.add(enemy.get_shadow())
 
