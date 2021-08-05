@@ -25,13 +25,22 @@ class GameObject(Sprite):
     def __init__(self):
         super().__init__()
 
+        self._init = False
+        self.init_time = None
         self.has_shadow = False
-        self.shadow_offset = (-30, 20)
+        self.shadow_offset = (-54, 43)
         self.shadow_scale = .9
-        self.shadow_ambience = .15
-        self.pos = (0, 0)
+        self.shadow_ambience = .09
+        self.pos = (-1000, -1000)
+
+    def init(self, dt):
+        self._init = True
+        self.init_time = dt
 
     def update(self, dt):
+        if not self._init:
+            self.init(dt)
+
         self.rect.center = self.pos
 
     def get_shadow(self):

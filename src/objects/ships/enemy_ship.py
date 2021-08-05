@@ -1,6 +1,6 @@
 from src.objects.ships.ship import Ship
 import pygame
-
+import random
 
 def get_image(path, size):
     image = pygame.image.load(path)
@@ -22,7 +22,7 @@ SHIP_IMAGES = {
 
 
 class EnemyShip(Ship):
-    def __init__(self, _type, start_pos, end_pos):
+    def __init__(self, _type, start_pos, angel):
         super().__init__()
         self.image = SHIP_IMAGES[_type]
         self.rect = self.image.get_rect()
@@ -31,7 +31,7 @@ class EnemyShip(Ship):
         self.on_fire = False
         self.fire_rate = 1 / 300
         self.fire_time = 0
-        self.speed = 2
+        self.speed = random.uniform(1.6, 3)
 
     def _update_ship_location(self, dt):
         self.pos = (self.pos[0], self.pos[1] + self.speed)

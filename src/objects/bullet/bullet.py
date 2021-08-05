@@ -43,4 +43,3 @@ class Bullet(GameObject):
         self.image = random.choice(EXPLODE_IMAGES)
         self.image = pygame.transform.scale(self.image, (size, size))
         self.image = pygame.transform.rotate(self.image, random.randint(0, 180))
-        # self.kill()

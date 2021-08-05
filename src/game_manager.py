@@ -2,9 +2,11 @@ from src.objects.ships.player_ship import PlayerShip
 from src.objects.ships.enemy_ship import EnemyShip
 from src.objects.bullet.player_bullet import PlayerBullet
 from src.objects.tile import Tile
+from src.config import *
 from pygame import sprite
 from src.config import FPS
 import pygame
+import random
 
 
 def get_map():
@@ -31,10 +33,6 @@ class GameManager:
         self.players.add(self.player)
         self.shadows.add(self.player.get_shadow())
 
-        e1 = EnemyShip('s2', (100, 100), (400, 500))
-        self.enemies.add(e1)
-        self.shadows.add(e1.get_shadow())
-
         # TODO: Render only onscreen tiles
         for tile in get_map():
             self.map.add(tile)
@@ -56,6 +54,13 @@ class GameManager:
         self.enemies.update(dt)
         self.bullets.update(dt)
         self.shadows.update(dt)
+
+        if random.random() > .99:
+            ship_type = random.choice(['b1', 'b2', 'b3', 'b4', 's1', 's2', 's3', 's4'])
+            start_pos = (random.randint(100, WIDTH - 100), -100)
+            enemy = EnemyShip(ship_type, start_pos, 0)
+            self.enemies.add(enemy)
+            self.shadows.add(enemy.get_shadow())
 
         if self.player.on_fire:
             if dt % (FPS / (1000 // (1 / self.player.fire_rate))) == 0:
